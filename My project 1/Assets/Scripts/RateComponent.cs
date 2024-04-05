@@ -9,6 +9,8 @@ public class RateComponent : MonoBehaviour
     public CanvasGroup canvasGroup;
 
     public Button CloseRate;
+    
+    public float OpenAnimation;
 
     private void Start()
     {
@@ -28,9 +30,16 @@ public class RateComponent : MonoBehaviour
 
     void Update()
     {
+        var time = Time.time;
+        var deltaTime = Time.deltaTime;
+
+        Debug.Log($"Time : {time}, DeltaTime: {deltaTime}");
+
         if(canvasGroup.alpha < 1)
         {
-            canvasGroup.alpha += 0.01f;
+            var deltaAlpha = deltaTime / OpenAnimation;
+
+            canvasGroup.alpha += deltaAlpha;
         }
     }
 
